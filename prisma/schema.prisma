@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String       @id @default(uuid())
+  email      String       @unique
+  password   String
+  created_at DateTime
+  Card       Card[]
+  Credential Credential[]
+  Network    Network[]
+  SecureNote SecureNote[]
+
+  @@map("users")
+}
+
+model Credential {
+  id         String   @id @default(uuid())
+  title      String   @db.VarChar(50)
+  url        String
+  username   String
+  password   String
+  userId     String
+  created_at DateTime
+  author     User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
+  @@map("credentials")
+}
+
+model SecureNote {
+  id         String   @id @default(uuid())
+  title      String   @db.VarChar(50)
+  text       String   @db.VarChar(1000)
+  userId     String
+  created_at DateTime
+  author     User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
+  @@map("notes")
+}
+
+model Card {
+  id             String   @id @default(uuid())
+  title          String   @db.VarChar(50)
+  cardNumber     String
+  cardholderName String
+  securityCode   String   @db.VarChar(3)
+  password       String   @db.VarChar(6)
+  expirationDate String
+  type           CardType
+  userId         String
+  created_at     DateTime
+  author         User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
+  @@map("cards")
+}
+
+model Network {
+  id         String   @id @default(uuid())
+  title      String   @db.VarChar(50)
+  network    String
+  password   String
+  userId     String
+  created_at DateTime
+  author     User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
+  @@map("networks")
+}
+
+enum CardType {
+  both
+  credit
+  debit
+
+  @@map("cardType")
+}
