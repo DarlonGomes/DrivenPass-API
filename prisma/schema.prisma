@@ -29,7 +29,7 @@ model Credential {
   password   String
   userId     String
   created_at DateTime @default(now())
-  author     User     @relation(fields: [userId], references: [id])
+  User       User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
   @@map("credentials")
@@ -41,7 +41,7 @@ model SecureNote {
   text       String   @db.VarChar(1000)
   userId     String
   created_at DateTime @default(now())
-  author     User     @relation(fields: [userId], references: [id])
+  User     User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
   @@map("notes")
@@ -58,7 +58,7 @@ model Card {
   type           CardType
   userId         String
   created_at     DateTime @default(now())
-  author         User     @relation(fields: [userId], references: [id])
+  User         User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
   @@map("cards")
@@ -71,7 +71,7 @@ model Network {
   password   String
   userId     String
   created_at DateTime @default(now())
-  author     User     @relation(fields: [userId], references: [id])
+  User     User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
   @@map("networks")
