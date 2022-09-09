@@ -12,7 +12,7 @@ model User {
   id         String       @id @default(uuid())
   email      String       @unique
   password   String
-  created_at DateTime
+  created_at DateTime     @default(now())
   Card       Card[]
   Credential Credential[]
   Network    Network[]
@@ -28,7 +28,7 @@ model Credential {
   username   String
   password   String
   userId     String
-  created_at DateTime
+  created_at DateTime @default(now())
   author     User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
@@ -40,7 +40,7 @@ model SecureNote {
   title      String   @db.VarChar(50)
   text       String   @db.VarChar(1000)
   userId     String
-  created_at DateTime
+  created_at DateTime @default(now())
   author     User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
@@ -57,7 +57,7 @@ model Card {
   expirationDate String
   type           CardType
   userId         String
-  created_at     DateTime
+  created_at     DateTime @default(now())
   author         User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
@@ -70,7 +70,7 @@ model Network {
   network    String
   password   String
   userId     String
-  created_at DateTime
+  created_at DateTime @default(now())
   author     User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
