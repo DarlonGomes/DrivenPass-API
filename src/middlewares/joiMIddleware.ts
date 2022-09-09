@@ -7,19 +7,19 @@ import { Request, Response, NextFunction } from "express";
 import { ErrorInfo } from "./errorMiddleware";
 
 export const joiValidation = {
-    signUp: (_req: Request, res:Response, next: NextFunction) => {
-        const request = res.locals.strippedRequestBody;
+    signUp: (req: Request, _res:Response, next: NextFunction) => {
+        const request = req.body;
         const validation = signUpSchema.validate(request, {abortEarly: false});
         if(validation.error) throw new ErrorInfo("error_unprocessable_entity", validation.error.message);
         next();
     },
-    signIn: (_req: Request, res:Response, next: NextFunction) => {
-        const request = res.locals.strippedRequestBody;
+    signIn: (req: Request, _res:Response, next: NextFunction) => {
+        const request = req.body;
         const validation = signInSchema.validate(request, {abortEarly: false});
         if(validation.error) throw new ErrorInfo("error_unprocessable_entity", validation.error.message);
         next();
     },
-    createCard: (_req: Request, res:Response, next: NextFunction) => {
+    createCard: (req: Request, _res:Response, next: NextFunction) => {
 
     }
 }

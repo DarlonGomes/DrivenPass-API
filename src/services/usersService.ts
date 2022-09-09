@@ -19,6 +19,7 @@ export async function doesPasswordMatch(password: string, confirmPassword: strin
 
 
 export async function archiveAccount (account: ISignUp){
+    delete account.confirmPassword
     const accountWithHashedPassword = await hashUserPassword(account);
     const response = await userRepository.create(accountWithHashedPassword);
     return response;
@@ -36,7 +37,7 @@ export async function comparePassword (password: string, hashPassword:string){
 }
 
 export async function generateToken(id: string){
-    const token = jwt.sign({userId: id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h"})
+    const token = jwt.sign({userId: id}, process.env.ACCESS_TOKEN_SECRET!, {expiresIn: "1d"})
     const config = {
         headers: {
             Authorization: `Bearer ${token}`

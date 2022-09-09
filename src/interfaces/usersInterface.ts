@@ -6,5 +6,5 @@ export interface ISignIn extends Omit<User, "id"|"created_at"> {
 }
 
 export interface ISignUp extends Omit<User, "id"|"created_at"> {
-    confirmPassword: string
+    confirmPassword?: string
 }

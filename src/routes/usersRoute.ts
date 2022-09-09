@@ -1,9 +1,7 @@
 import { Router } from "express";
-import { authenticateToken } from "../middlewares/tokenMiddleware";
 import * as userController from "../controllers/usersController";
-import { stripRequestBody } from "../middlewares/stripMiddleware";
 import { joiValidation } from "../middlewares/joiMIddleware";
-const useRoute = Router();
+export const userRouter = Router();
 
-useRoute.post("/sign-up", stripRequestBody, joiValidation.signUp, userController.signUp);
-useRoute.post("/sign-in", authenticateToken, stripRequestBody, joiValidation.signIn, userController.signIn);
+userRouter.post("/sign-up", joiValidation.signUp, userController.signUp);
+userRouter.post("/sign-in", joiValidation.signIn, userController.signIn);
