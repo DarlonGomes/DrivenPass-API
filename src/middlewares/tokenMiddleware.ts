@@ -8,8 +8,7 @@ export async function authenticateToken (req: Request, res: Response, next: Next
     if(!token) throw new ErrorInfo("error_unauthorized", "This request doesn't have any token");
     jwt.verify(token!, process.env.ACCESS_TOKEN_SECRET!, (err, id) => {
         if(err) throw new ErrorInfo("error_unauthorized", "This request doesn't have a valid token");
-
-        res.locals.userId = Number(id);
+        res.locals.userId = id;
         next();
     });
 };

@@ -20,6 +20,27 @@ export const joiValidation = {
         next();
     },
     createCard: (req: Request, _res:Response, next: NextFunction) => {
-
-    }
+        const request = req.body;
+        const validation = cardSchema.validate(request, {abortEarly: false});
+        if(validation.error) throw new ErrorInfo("error_unprocessable_entity", validation.error.message);
+        next();
+    },
+    createCredential:(req: Request, _res:Response, next: NextFunction) =>{
+        const request = req.body;
+        const validation = credentialSchema.validate(request, {abortEarly: false});
+        if(validation.error) throw new ErrorInfo("error_unprocessable_entity", validation.error.message);
+        next();
+    },
+    createNetwork:(req: Request, _res:Response, next: NextFunction) =>{
+        const request = req.body;
+        const validation = networkSchema.validate(request, {abortEarly: false});
+        if(validation.error) throw new ErrorInfo("error_unprocessable_entity", validation.error.message);
+        next();
+    },
+    createNote:(req: Request, _res:Response, next: NextFunction) =>{
+        const request = req.body;
+        const validation = noteSchema.validate(request, {abortEarly: false});
+        if(validation.error) throw new ErrorInfo("error_unprocessable_entity", validation.error.message);
+        next();
+    },
 }
