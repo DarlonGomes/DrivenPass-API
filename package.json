@@ -30,7 +30,9 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/cryptr": "^4.0.1",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/nodemon": "^1.19.2",
+    "@types/string-strip-html": "^5.0.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "cryptr": "^6.0.3",
@@ -40,6 +42,7 @@
     "express-async-errors": "^3.1.1",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "string-strip-html": "^11.6.2"
   }
 }
