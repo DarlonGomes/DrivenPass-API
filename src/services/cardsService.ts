@@ -19,8 +19,9 @@ export async function getDataById (userId: string, id: string){
 
 export async function createCard(data: ICardRequest, userId:string){
     const card : IInsertCard = { ...data, userId};
-    const encryptedCard = await securityUtils.encryptObjectPassword(card);
-    await cardRepository.insertData(encryptedCard as IInsertCard);
+    const dataWithEncryptedPassword = await securityUtils.encryptObjectPassword(card);
+    const encryptedCard = await securityUtils.encryptCVV(dataWithEncryptedPassword as IInsertCard);
+    await cardRepository.insertData(encryptedCard);
 }
 
 export async function deleteDataById(userId: string, id: string){

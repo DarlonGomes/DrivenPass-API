@@ -11,6 +11,6 @@ export interface ISignUp extends Omit<User, "id"|"created_at"> {
     confirmPassword?: string
 }
 
-export type DecryptDataObject = | Credential | Card | Network
+export type DecryptDataObject = | Card | Credential | Network
 
 export type EncryptDataObject = | IInsertCredential | IInsertCard

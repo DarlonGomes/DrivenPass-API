@@ -52,8 +52,8 @@ model Card {
   title          String   @db.VarChar(50)
   cardNumber     String
   cardholderName String
-  securityCode   String   @db.VarChar(3)
-  password       String   @db.VarChar(6)
+  securityCode   String   
+  password       String   
   expirationDate String
   type           CardType
   userId         String
