@@ -23,7 +23,7 @@ export async function searchById(id: string){
     return response;
 };
 export async function insertData (data: IInsertCard){
-    const response : Card | null = await client.card.create({
+    const response : Card | null  = await client.card.create({
         data: data
     });
     console.log(response);
