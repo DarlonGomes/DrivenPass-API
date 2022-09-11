@@ -16,10 +16,9 @@ export async function checkThisTitle(title:string, userId: string){
 };
 
 export async function insertData (data: IInsertNetwork){
-    const response : Network | null  = await client.network.create({
+    await client.network.create({
         data: data
     });
-    console.log(response);
 };
 
 export async function networkTitles (userId: string){
@@ -46,12 +45,11 @@ export async function searchById(id:string){
 };
 
 export async function deleteById(id: string){
-    const response : Network | null = await client.network.delete({
+    await client.network.delete({
         where:{
             id: id
         }
     });
-    console.log(response);
 };
 
 export async function networksCount(userId: string){

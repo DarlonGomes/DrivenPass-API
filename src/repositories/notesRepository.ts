@@ -26,19 +26,17 @@ export async function searchById(id:string){
     
 };
 export async function insertData (data: IInsertNote){
-    const response : SecureNote | null  = await client.secureNote.create({
+    await client.secureNote.create({
         data: data
     });
-    console.log(response);
 };
 
 export async function deleteById(id: string){
-    const response : SecureNote | null = await client.secureNote.delete({
+    await client.secureNote.delete({
         where:{
             id: id
         }
     });
-    console.log(response);
 };
 
 export async function checkThisTitle(title:string, userId: string){

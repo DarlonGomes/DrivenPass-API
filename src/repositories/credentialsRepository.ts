@@ -14,13 +14,12 @@ export async function checkThisTitle(title: string, userId:string){
         }
     });
     return response
-}
+};
 
 export async function insertData (credential: IInsertCredential){
-    const response : Credential | null = await client.credential.create({
+    await client.credential.create({
         data: credential
-    });
-    console.log(response)
+    });  
 };
 
 export async function searchById(id:string){
@@ -46,12 +45,11 @@ export async function credentialTitles(userId: string){
 };
 
 export async function deleteById(id: string){
-    const response = await client.credential.delete({
+    await client.credential.delete({
         where:{
             id: id
         }
     });
-    console.log(response);
 };
 
 export async function credentialsCount(userId: string){
