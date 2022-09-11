@@ -1,9 +1,11 @@
 import { Card } from "@prisma/client";
 import client from "../database/prisma";
 import { IInsertCard } from "../interfaces/cardInterface";
+import { TitlesList } from "../types/usersTypes";
+
 
 export async function cardTitles (userId: string){
-    const list : {id:string, title: string}[]= await client.card.findMany({
+    const response : TitlesList | null = await client.card.findMany({
         where:{
             userId: userId
         },
@@ -12,7 +14,7 @@ export async function cardTitles (userId: string){
             title: true
         }
     });
-    return list;
+    return response;
 };
 export async function searchById(id: string){
     const response : Card | null = await client.card.findFirst({
@@ -46,4 +48,12 @@ export async function validateTitle(title:string, userId:string){
         }
     });
     return response
+};
+export async function cardsCount(userId: string){
+    const count : number = await client.card.count({
+        where:{
+            userId: userId
+        }
+    });
+    return count
 }

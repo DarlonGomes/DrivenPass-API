@@ -4,10 +4,10 @@ import { ErrorInfo } from "../middlewares/errorMiddleware";
 import * as credentialRepository from "../repositories/credentialsRepository";
 import * as userValidator from "../utils/validators/usersValidators";
 import { securityUtils } from "../utils/handlers/securityHandlers";
-
+import { TitlesList } from "../types/usersTypes";
 
 export async function getAllCredentials (userId: string){
-    const response: {id:string, title: string}[] | null = await credentialRepository.searchAll(userId)
+    const response: TitlesList| null = await credentialRepository.credentialTitles(userId)
     return response
 };
 
@@ -25,12 +25,12 @@ export async function createCredential(request: ICredentialRequest, userId: stri
 };
 
 export async function validateTitle(title: string, userId: string){
-    const validation = await credentialRepository.checkThisTitle(title, userId)
+    const validation : Credential | null = await credentialRepository.checkThisTitle(title, userId)
     if(validation) throw new ErrorInfo("error_conflict", "You already have a title like this")
 }
 
 export async function deleteCredentialById(userId:string, id: string){
-    const credential = await ensureCredentialExists(id);
+    const credential: Credential= await ensureCredentialExists(id);
     await userValidator.checkIfBelongsToUser(userId, credential);
     await credentialRepository.deleteById(id);
 };
@@ -39,4 +39,5 @@ async function ensureCredentialExists(id: string){
     const credential: Credential | null = await credentialRepository.searchById(id);
     if(!credential) throw new ErrorInfo("error_not_found", "This credential doesn't exists");
     return credential;
-}
+};
+
