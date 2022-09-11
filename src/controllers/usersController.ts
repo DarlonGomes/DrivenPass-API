@@ -17,8 +17,8 @@ export async function signIn(req: Request, res: Response){
     const request: ISignIn = req.body;
     const account : User | undefined = await userService.checkEmail(request.email, "sign-in");
     await userService.comparePassword(request.password, account!.password)
-    const token = await userService.generateToken(account!.id);
-    return res.status(200).json({message: `Success. You will be redirected to the home page`, token: token})
+    const config = await userService.generateToken(account!.id);
+    return res.status(200).send({message: `Success. You will be redirected to the home page`, config: config})
 };
 
 export async function sumOfEachType(_req: Request, res: Response){

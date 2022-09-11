@@ -8,5 +8,5 @@ export const signUpSchema = Joi.object({
 
 export const signInSchema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }).required(),
-    password: Joi.string().min(1).required()
+    password: Joi.string().min(8).required()
 });

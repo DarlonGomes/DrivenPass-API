@@ -28,15 +28,14 @@ export async function insertData (data: IInsertCard){
     const response : Card | null  = await client.card.create({
         data: data
     });
-    console.log(response);
+    return response;
 };
 export async function deleteById(id: string){
-    const response : Card | null = await client.card.delete({
+    await client.card.delete({
         where:{
             id: id
         }
     });
-    console.log(response);
 };
 export async function validateTitle(title:string, userId:string){
     const response : Card | null = await client.card.findUnique({
