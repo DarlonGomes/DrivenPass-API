@@ -1,20 +1,64 @@
 import client from "../database/prisma";
+import { Network } from "@prisma/client";
+import { IInsertNetwork } from "../interfaces/networkInterface";
+import { TitlesList } from "../types/usersTypes";
 
-export async function insertData (){
+export async function checkThisTitle(title:string, userId: string){
+    const response : Network | null = await client.network.findUnique({
+        where:{
+            userId_title:{
+                userId: userId,
+                title: title
+            }
+        }
+    });
+    return response
+};
 
-}
+export async function insertData (data: IInsertNetwork){
+    const response : Network | null  = await client.network.create({
+        data: data
+    });
+    console.log(response);
+};
 
-export async function deleteById(){
+export async function networkTitles (userId: string){
+    const response : TitlesList | null = await client.network.findMany({
+        where:{
+            userId: userId
+        },
+        select:{
+            title: true,
+            id: true
+        }
+    });
+    return response
+};
+
+export async function searchById(id:string){
+    const response :Network | null = await client.network.findFirst({
+        where:{
+            id: id
+        }
+    });
+    return response;
     
-}
-export async function deleteAll(){
+};
 
-}
+export async function deleteById(id: string){
+    const response : Network | null = await client.network.delete({
+        where:{
+            id: id
+        }
+    });
+    console.log(response);
+};
 
-export async function deleteDataById(){
-
-}
-
-export async function updateDataById(){
-    
+export async function networksCount(userId: string){
+    const count : number = await client.network.count({
+        where:{
+            userId: userId
+        }
+    });
+    return count
 }

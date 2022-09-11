@@ -1,16 +1,17 @@
 import {Request, Response} from "express";
 import { ICardRequest } from "../interfaces/cardInterface";
 import * as cardService from "../services/cardsService"
+import { DecryptDataObject, TitlesList } from "../types/usersTypes";
 
 export async function allTitles (req: Request, res: Response){
     const {userId} = res.locals.userId;
-    const response = await cardService.getAllCardTitles(userId);
+    const response : TitlesList | null = await cardService.getAllCardTitles(userId);
     return res.status(200).send(response)
 };
 export async function InfoById (req: Request, res: Response){
     const {userId} = res.locals.userId;
     const {id} = req.params;
-    const response = await cardService.getDataById(userId, id);
+    const response : DecryptDataObject = await cardService.getDataById(userId, id);
     return res.status(200).send(response);
 };
 export async function newCard (req: Request, res: Response){
