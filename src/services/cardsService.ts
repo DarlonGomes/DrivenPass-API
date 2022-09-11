@@ -31,6 +31,7 @@ export async function deleteDataById(userId: string, id: string){
 };
 
 async function ensureCardExists(id: string){
+    
     const card : Card | null = await cardRepository.searchById(id);
     if(!card) throw new ErrorInfo("error_not_found", "This card doesn't exists");
     return card
