@@ -43,14 +43,9 @@ export async function comparePassword (password: string, hashPassword:string){
     if(!isPasswordValid) throw new ErrorInfo("error_conflict", "Incorrect password")
 };
 
-export async function generateToken(id: string) : Promise<TokenConfig>{
+export async function generateToken(id: string) {
     const token : string = jwt.sign({userId: id}, process.env.ACCESS_TOKEN_SECRET!, {expiresIn: "1d"})
-    const config : TokenConfig = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    };
-    return config
+    return token
 };
 
 export async function handleEachSum ( userId: string) : Promise<CategoryCount>{
