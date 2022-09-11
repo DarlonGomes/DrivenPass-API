@@ -25,10 +25,9 @@ export async function searchById(id: string){
     return response;
 };
 export async function insertData (data: IInsertCard){
-    const response : Card | null  = await client.card.create({
+    await client.card.create({
         data: data
     });
-    return response;
 };
 export async function deleteById(id: string){
     await client.card.delete({

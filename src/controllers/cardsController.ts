@@ -19,8 +19,8 @@ export async function newCard (req: Request, res: Response){
     const {userId} = res.locals.userId;
     const request : ICardRequest = req.body;
     await cardService.validateTitle(request.title, userId);
-    const card : Card = await cardService.createCard(request, userId);
-    return res.status(201).send({message: "Sucessfull", card: card});
+    await cardService.createCard(request, userId);
+    return res.status(201).send("Sucessfull");
 };
 export async function deleteById (req: Request, res: Response){
     const {userId} = res.locals.userId;
