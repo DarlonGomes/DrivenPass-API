@@ -7,4 +7,4 @@ export const networkRouter = Router();
 networkRouter.get("", authenticateToken, networkController.allTitles);
 networkRouter.get("/:id", authenticateToken, networkController.InfoById);
 networkRouter.post("/create", authenticateToken, joiValidation.createNetwork, networkController.newNetwork);
-networkRouter.delete("delete/:id", authenticateToken, networkController.deleteById);
+networkRouter.delete("/:id", authenticateToken, networkController.deleteById);
