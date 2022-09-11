@@ -7,7 +7,7 @@ import { networkRouter } from "./networkRoute";
 
 export const router = Router();
 
-router.use("/auth", userRouter);
+router.use("/users", userRouter);
 router.use("/credentials", credentialRouter);
 router.use("/notes", noteRouter);
 router.use("/cards", cardRouter);

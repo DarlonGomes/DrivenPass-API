@@ -1,6 +1,6 @@
 
 import { encryptUtils } from "../encryptUtils";
-import { DecryptDataObject, EncryptDataObject } from "../../interfaces/usersInterface";
+import { DecryptDataObject, EncryptDataObject } from "../../types/usersTypes";
 import { IInsertCard } from "../../interfaces/cardInterface";
 
 export const securityUtils = {
