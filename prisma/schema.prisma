@@ -48,18 +48,18 @@ model SecureNote {
 }
 
 model Card {
-  id             String   @id @default(uuid())
-  title          String   @db.VarChar(50)
+  id             String    @id @default(uuid())
+  title          String    @db.VarChar(50)
   cardNumber     String
   cardholderName String
   securityCode   String
   password       String
   expirationDate String
-  isVirtual      Boolean  @default(false)
+  isVirtual      CardModel
   type           CardType
   userId         String
-  created_at     DateTime @default(now())
-  User           User     @relation(fields: [userId], references: [id])
+  created_at     DateTime  @default(now())
+  User           User      @relation(fields: [userId], references: [id])
 
   @@unique([userId, title])
   @@map("cards")
@@ -83,4 +83,11 @@ enum CardType {
   debit
 
   @@map("cardType")
+}
+
+enum CardModel {
+  true
+  false
+
+  @@map("cardModel")
 }
