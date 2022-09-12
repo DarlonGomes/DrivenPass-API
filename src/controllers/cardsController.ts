@@ -18,6 +18,7 @@ export async function InfoById (req: Request, res: Response){
 export async function newCard (req: Request, res: Response){
     const {userId} = res.locals.userId;
     const request : ICardRequest = req.body;
+    console.log(request)
     await cardService.validateTitle(request.title, userId);
     await cardService.createCard(request, userId);
     return res.status(201).send("Sucessfull");
