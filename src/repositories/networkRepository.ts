@@ -3,17 +3,6 @@ import { Network } from "@prisma/client";
 import { IInsertNetwork } from "../interfaces/networkInterface";
 import { TitlesList } from "../types/usersTypes";
 
-export async function checkThisTitle(title:string, userId: string){
-    const response : Network | null = await client.network.findUnique({
-        where:{
-            userId_title:{
-                userId: userId,
-                title: title
-            }
-        }
-    });
-    return response
-};
 
 export async function insertData (data: IInsertNetwork){
     await client.network.create({

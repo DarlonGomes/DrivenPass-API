@@ -24,11 +24,6 @@ export async function createNetwork(request: INetworkRequest, userId: string){
     await networkRepository.insertData(encryptedNetwork as IInsertNetwork);
 };
 
-export async function validateTitle(title: string, userId: string){
-    const validation : Network | null = await networkRepository.checkThisTitle(title, userId)
-    if(validation) throw new ErrorInfo("error_conflict", "You already have a title like this")
-};
-
 export async function deleteNetworkById(userId:string, id: string){
     const network: Network= await ensureNetworkExists(id);
     await userValidator.checkIfBelongsToUser(userId, network);

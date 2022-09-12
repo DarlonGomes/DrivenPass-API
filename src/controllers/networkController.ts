@@ -17,7 +17,6 @@ export async function InfoById (req: Request, res: Response){
 export async function newNetwork (req: Request, res: Response){
     const {userId} = res.locals.userId;
     const request : INetworkRequest = req.body;
-    await networkService.validateTitle(request.title, userId);
     await networkService.createNetwork(request, userId);
     return res.status(201).send("Sucessfull")
 };
