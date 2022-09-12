@@ -51,12 +51,3 @@ export async function deleteById(id: string){
         }
     });
 };
-
-export async function credentialsCount(userId: string){
-    const count : number = await client.credential.count({
-        where:{
-            userId: userId
-        }
-    });
-    return count
-}

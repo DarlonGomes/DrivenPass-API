@@ -51,11 +51,3 @@ export async function checkThisTitle(title:string, userId: string){
     return response
 };
 
-export async function notesCount(userId: string){
-    const count : number = await client.secureNote.count({
-        where:{
-            userId: userId
-        }
-    });
-    return count
-};

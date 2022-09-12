@@ -41,11 +41,3 @@ export async function deleteById(id: string){
     });
 };
 
-export async function networksCount(userId: string){
-    const count : number = await client.network.count({
-        where:{
-            userId: userId
-        }
-    });
-    return count
-}

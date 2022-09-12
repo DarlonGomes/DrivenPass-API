@@ -47,11 +47,3 @@ export async function validateTitle(title:string, userId:string){
     });
     return response
 };
-export async function cardsCount(userId: string){
-    const count : number = await client.card.count({
-        where:{
-            userId: userId
-        }
-    });
-    return count
-}

@@ -5,10 +5,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { CategoryCount, TokenConfig } from "../types/usersTypes";
 import { User } from "@prisma/client";
-import { credentialsCount } from "../repositories/credentialsRepository";
-import { cardsCount } from "../repositories/cardsRepository";
-import { networksCount } from "../repositories/networkRepository";
-import { notesCount } from "../repositories/notesRepository";
+import { credentialTitles } from "../repositories/credentialsRepository";
+import { cardTitles } from "../repositories/cardsRepository";
+import { networkTitles } from "../repositories/networkRepository";
+import { noteTitles } from "../repositories/notesRepository";
 
 
 export async function checkEmail (email: string, method: "sign-in" | "sign-up" ) : Promise<User | undefined>{
@@ -54,14 +54,14 @@ export async function generateToken(id: string) {
 };
 
 export async function handleEachSum ( userId: string) : Promise<CategoryCount>{
- const credentials : number = await credentialsCount(userId);
- const cards : number = await cardsCount(userId);
- const networks : number = await networksCount(userId);
- const notes : number = await notesCount(userId);
+ const credentials  = await credentialTitles(userId);
+ const cards  = await cardTitles(userId);
+ const networks  = await networkTitles(userId);
+ const notes  = await noteTitles(userId);
  return [
-    {title: "Credentials", quantity: credentials},
-    {title: "Safe Notes", quantity: notes},
-    {title: "Cards", quantity: cards},
-    {title: "WiFi Passwords", quantity: networks},
+    {title: "Credentials", quantity: credentials.length},
+    {title: "Safe Notes", quantity: notes.length},
+    {title: "Cards", quantity: cards.length},
+    {title: "WiFi Passwords", quantity: networks.length},
 ]
 }
