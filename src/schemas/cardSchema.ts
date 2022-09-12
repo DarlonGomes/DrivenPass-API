@@ -8,4 +8,5 @@ export const cardSchema = Joi.object({
     password: Joi.string().min(4).max(6).required(),
     expirationDate: Joi.string().min(4).max(7).required(),
     type: Joi.string().valid('credit', 'debit', 'both').required(),
+    isVirtual: Joi.boolean().required()
 });
