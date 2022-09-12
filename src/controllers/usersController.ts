@@ -22,7 +22,7 @@ export async function signIn(req: Request, res: Response){
 };
 
 export async function sumOfEachType(_req: Request, res: Response){
-    const {id} = res.locals.userId;
-    const response : CategoryCount = await userService.handleEachSum(id);
+    const {userId} = res.locals.userId;
+    const response : CategoryCount = await userService.handleEachSum(userId);
     return res.status(200).send(response)
 }

@@ -58,6 +58,7 @@ export async function handleEachSum ( userId: string) : Promise<CategoryCount>{
  const cards  = await cardTitles(userId);
  const networks  = await networkTitles(userId);
  const notes  = await noteTitles(userId);
+
  return [
     {title: "Credentials", quantity: credentials.length},
     {title: "Safe Notes", quantity: notes.length},
